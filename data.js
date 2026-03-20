@@ -1,6 +1,6 @@
 const cardData = {
     profile: {
-        name: "SRWA Cia. Ltda",
+        name: "SRAW Cia. Ltda",
         title: "Servicios en operaciones petroleras.",
         description: "Instrumentación • Monitoreo • Detección de gases • LEL • H2S",
         // La imagen que se cargará, sube tu logo a la carpeta assets/img/felipelarrea.png

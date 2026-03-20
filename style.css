@@ -1,0 +1,403 @@
+:root {
+    /* Fondos y Temática Light (Basado en #d3ddf2) */
+    --bg-color: #d3ddf2; 
+    
+    /* Variables de Marca: Deep Blue & Lavender Tech */
+    --accent-primary: #7caaf1;     /* Azul Cielo (Botones principales) */
+    --accent-secondary: #8c8cbe;   /* Lavanda (Elementos de apoyo) */
+    --accent-highlight: #7a80b6;   /* Lavanda Profundo (Estados activos) */
+    --accent-hover-details: #575b63; /* Gris para hovers sutiles */
+    
+    /* iOS 26 Glassmorphism - Optimizado para paleta Azul/Lavanda */
+    --glass-bg: rgba(255, 255, 255, 0.7); 
+    --glass-border: rgba(140, 140, 190, 0.3); /* Basado en #8c8cbe */
+    --glass-shadow: 0 10px 40px 0 rgba(12, 20, 98, 0.12); /* Sombra basada en el azul profundo #0c1462 */
+    --glass-blur: blur(25px);
+    
+    /* Textos (Legibilidad máxima) */
+    --text-primary: #0c1462;       /* Azul Marino Profundo (Contraste máximo) */
+    --text-secondary: #575b63;     /* Gris azulado para info secundaria */
+    
+    /* Background Shapes (Gradientes etéreos) */
+    --shape-1: #7caaf1;            /* Azul brillante */
+    --shape-2: #8c8cbe;            /* Lavanda */
+    --shape-3: rgba(211, 221, 242, 0.5); /* Refuerzo del fondo */
+
+    /* Espaciado UX Premium */
+    --spacing-micro: 16px;
+    --spacing-base: 24px;
+    --spacing-large: 32px;
+
+    /* Transiciones fluidas */
+    --transition-fast: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Formas de Fondo Animadas */
+.bg-shape {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--shape-1);
+    top: 10%;
+    left: -10%;
+}
+
+.shape-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--shape-2);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--shape-3);
+    top: 40%;
+    left: 40%;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, 40px) scale(1.15); }
+    100% { transform: translate(-40px, 60px) scale(0.9); }
+}
+
+/* Tarjeta Contenedor (Glassmorphism) */
+.card-container {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 36px;
+    width: 100%;
+    max-width: 400px; 
+    padding: var(--spacing-large) var(--spacing-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Reflejo iOS en el borde superior */
+.card-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Cabecera */
+.profile-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor de Imagen de Perfil y Efecto Blur Trasero */
+.profile-image-wrapper {
+    position: relative;
+    width: 150px; /* Tamaño aumentado */
+    height: 150px;
+    margin-bottom: 24px;
+}
+
+.profile-image-blur {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0.65;
+    z-index: 0;
+}
+
+.profile-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 1;
+    border: 4px solid rgba(255, 255, 255, 0.9); /* Borde blanco sutil */
+    box-shadow: 0 10px 25px rgba(79, 80, 79, 0.15);
+    background-color: var(--glass-bg); 
+}
+
+.profile-name {
+    font-size: 28px; /* Dominante */
+    font-weight: 800; /* Bold */
+    color: var(--text-primary); /* Color oscuro */
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+}
+
+.profile-title {
+    font-size: 16px; /* Medio */
+    font-weight: 500; /* Medium */
+    color: var(--accent-primary);
+    margin-bottom: 12px;
+}
+
+.profile-description {
+    font-size: 14px; /* Detalles */
+    line-height: 1.5;
+    color: var(--text-secondary); /* Gris medio */
+    max-width: 90%;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Acciones Rápidas */
+.quick-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-btn {
+    width: 64px; /* Mejor área táctil */
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    box-shadow: 0 4px 12px rgba(79, 80, 79, 0.06), inset 0 2px 4px rgba(255,255,255,0.5); /* Sombra y elevación */
+}
+
+.action-btn:hover, .action-btn:active {
+    background: #ffffff;
+    color: var(--accent-hover-details);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 20px rgba(114, 98, 51, 0.12);
+}
+
+/* Botón Principal */
+.main-action {
+    display: flex;
+    justify-content: center;
+}
+
+.primary-btn {
+    width: 100%;
+    min-height: 56px; /* Área táctil accesible */
+    padding: 18px 24px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-highlight));
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition-fast);
+    box-shadow: 0 8px 25px rgba(144, 119, 50, 0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+}
+
+.primary-btn:hover, .primary-btn:active {
+    transform: scale(0.98);
+    background: linear-gradient(135deg, var(--accent-highlight), var(--accent-primary));
+    box-shadow: 0 4px 15px rgba(144, 119, 50, 0.2);
+}
+
+.primary-btn .icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Separador Horizontal */
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(79, 80, 79, 0.1), transparent);
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-micro);
+}
+
+.social-btn {
+    color: #6B7280; /* Color gris estándar para redes según spec */
+    transition: var(--transition-fast);
+    padding: 12px; /* Mayor área táctil (12+12+24 = 48px) */
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.social-btn:hover, .social-btn:active {
+    color: var(--accent-primary); 
+    background: #ffffff;
+    transform: scale(1.05); /* Escalado rápido al tocar / hover */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.social-btn .icon {
+    width: 24px; /* Ícono un poco más grande */
+    height: 24px;
+}
+
+/* Botón Compartir */
+.share-section {
+    display: flex;
+    justify-content: center;
+    margin-top: -12px; /* Reducción de 12px de espacio solicitado */
+}
+
+.secondary-btn {
+    width: 100%;
+    min-height: 56px;
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.85); /* Mayor contraste */
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid rgba(79, 80, 79, 0.15); /* Borde más visible */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-fast);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.secondary-btn:hover {
+    background: #ffffff;
+    border-color: rgba(79, 80, 79, 0.25);
+    transform: translateY(-1px);
+}
+
+.secondary-btn:active {
+    transform: scale(0.98);
+}
+
+.secondary-btn .icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+/* Animaciones */
+.fade-in {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeIn 250ms cubic-bezier(0.25, 1, 0.5, 1) forwards; /* 250ms como solicitado */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.staggered-1 { animation-delay: 0.1s; }
+.staggered-2 { animation-delay: 0.2s; }
+.staggered-3 { animation-delay: 0.3s; }
+.staggered-4 { animation-delay: 0.4s; }
+.staggered-5 { animation-delay: 0.5s; }
+
+.map-section {
+    padding: var(--spacing-base);
+    text-align: center;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-micro);
+}
+
+.map-wrapper iframe {
+    filter: saturate(0.8) contrast(1.1); /* Solo quita un poco de brillo */
+    transition: var(--transition-smooth);
+}
+
+.address-text {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Efecto opcional para que el mapa se integre a la paleta fría */
+.map-wrapper iframe:hover {
+    filter: none; /* Cuando el usuario pasa el mouse, se ve a todo color */
+}
+
+/* Desktop adjustments */
+@media (min-width: 600px) {
+    .card-container {
+        margin: 40px auto;
+        border-radius: 40px;
+    }
+}

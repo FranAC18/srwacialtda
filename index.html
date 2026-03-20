@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- El título se llenará desde data.js dinámicamente, pero dejamos un valor por defecto -->
+    <title id="page-title">Mostaza Web - Tarjeta Digital</title>
+    <meta name="description" id="page-desc" content="Tarjeta de presentación digital">
+
+    <!-- Modern Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Blur Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <main class="card-container">
+        <!-- 8.1 Header (Identidad) -->
+        <header class="profile-header fade-in">
+            <div class="profile-image-wrapper">
+                <div class="profile-image-blur" id="profile-blur"></div>
+                <!-- El onerror previene errores si la imagen no existe y carga un fallback local/remoto -->
+                <img src="" alt="Profile Image" id="profile-image" class="profile-image"
+                    onerror="this.src='assets/img/srwacialtda.png'">
+            </div>
+            <h1 id="profile-name" class="profile-name"></h1>
+            <h2 id="profile-title" class="profile-title"></h2>
+            <p id="profile-description" class="profile-description"></p>
+        </header>
+
+        <!-- 8.2 Acciones Rápidas -->
+        <section class="quick-actions fade-in staggered-1" id="quick-actions">
+            <!-- Inyectado mediante data.js y script.js -->
+        </section>
+
+        <!-- 8.3 Botón Principal (Save Contact) -->
+        <section class="main-action fade-in staggered-2">
+            <button id="save-contact-btn" class="primary-btn">
+                <i data-lucide="user-plus" class="icon"></i>
+                Guardar contacto
+            </button>
+        </section>
+
+        <!-- Separador sutil -->
+        <hr class="section-divider fade-in staggered-3">
+
+        <!-- 8.4 Redes Sociales -->
+        <section class="social-links fade-in staggered-3" id="social-links">
+            <!-- Inyectado mediante data.js y script.js -->
+        </section>
+
+        <!-- Separador sutil -->
+        <hr class="section-divider fade-in staggered-4">
+
+        <!-- 15. Botón Compartir -->
+        <section class="share-section fade-in staggered-5">
+            <button id="share-btn" class="secondary-btn">
+                <i data-lucide="share-2" class="icon"></i>
+                Compartir Tarjeta
+            </button>
+        </section>
+
+
+        <!-- 16. Mapa Interactivo (Google Maps) -->
+        <section class="map-section fade-in staggered-6" id="map-section">
+            <h3 class="section-title">Visítanos</h3>
+            <div class="map-wrapper">
+                <!-- El iframe de Google Maps se insertará aquí -->
+                <iframe id="google-map" class="map-iframe"
+                    style="border:0; border-radius: 16px; width: 100%; height: 300px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Archivo de Configuración de Datos (DEBE ir antes de script.js) -->
+    <script src="data.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
